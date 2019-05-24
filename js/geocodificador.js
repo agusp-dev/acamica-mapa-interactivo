@@ -1,5 +1,3 @@
-var xhhtp = new XMLHttpRequest();
-
 geocodificadorModulo = (function () {
   var geocodificador // Geocodificador que dada una dirección devuelve una coordenada
   

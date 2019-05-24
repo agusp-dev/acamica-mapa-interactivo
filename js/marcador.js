@@ -20,6 +20,10 @@ marcadorModulo = (function () {
         });
   }
 
+  function obtenerMiMarcador() {
+    return miMarcador;
+  }
+
     // Agrega la dirección del marcador en la lista de Lugares Intermedios
   function agregarDireccionMarcador (marcador) {
         // console.log(marcador.getPosition().lat() + ',' + marcador.getPosition().lng());
@@ -235,7 +239,7 @@ marcadorModulo = (function () {
       miPosicion = posicionCentral
     }
     lugaresModulo.buscarCerca(miPosicion, tipoDeLugar.value, rango.value)
-        // cambio el centro del mapa a miPosicion
+    // cambio el centro del mapa a miPosicion
     mapa.panTo(miPosicion)
   }
 
@@ -244,6 +248,7 @@ marcadorModulo = (function () {
     existeMiMarcador,
     damePosicion,
     mostrarMiMarcador,
+    obtenerMiMarcador,
     agregarMarcadorRuta,
     borrarMarcadores,
     marcarLugares,
