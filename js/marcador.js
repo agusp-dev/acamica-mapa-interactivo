@@ -6,7 +6,7 @@ marcadorModulo = (function () {
   var infoVentana // La ventana con información
 
     // Crea un marcador y lo muestra en el mapa
-  function mostrarMiMarcador (ubicacion) {
+  function mostrarMiMarcador (ubicacion, direccion) {
         /* Completar la función mostrarMiMarcador() para crear un marcador
         en la posición pasada por parámetro y mostrarlo en el mapa.
         Este marcador debe tener un título, una animación.
@@ -16,9 +16,8 @@ marcadorModulo = (function () {
           map: mapa,
           draggable: false,
           animation: google.maps.Animation.DROP,
-          title: 'Mi Marcador'
+          title: direccion
         });
-
   }
 
     // Agrega la dirección del marcador en la lista de Lugares Intermedios
@@ -221,6 +220,8 @@ marcadorModulo = (function () {
         crearMarcador(resultados[i])
         extenderLimites(resultados[i])
       }
+    } else {
+      alert('Places was not successful for the following reason: ' + status);
     }
   }
 
@@ -233,7 +234,7 @@ marcadorModulo = (function () {
     } else {
       miPosicion = posicionCentral
     }
-    lugaresModulo.buscarCerca(miPosicion)
+    lugaresModulo.buscarCerca(miPosicion, tipoDeLugar.value, rango.value)
         // cambio el centro del mapa a miPosicion
     mapa.panTo(miPosicion)
   }

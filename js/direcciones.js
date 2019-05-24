@@ -47,7 +47,7 @@ direccionesModulo = (function () {
     agregarDireccionEnLista(direccion, ubicacionTexto)
     mapa.setCenter(ubicacion)
     streetViewModulo.fijarStreetView(ubicacion)
-    marcadorModulo.mostrarMiMarcador(ubicacion)
+    marcadorModulo.mostrarMiMarcador(ubicacion, direccion)
   }
 
   function agregarDireccion (direccion, ubicacion) {

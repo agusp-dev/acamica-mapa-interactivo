@@ -18,12 +18,22 @@ lugaresModulo = (function () {
 
     // Busca lugares con el tipo especificado en el campo de TipoDeLugar
 
-  function buscarCerca (posicion) {
+  function buscarCerca (posicion, tipoLugar, metros) {
         /* Completar la función buscarCerca  que realice la búsqueda de los lugares
     del tipo (tipodeLugar) y con el radio indicados en el HTML cerca del lugar
     pasado como parámetro y llame a la función marcarLugares. */
-
+    
+    servicioLugares.nearbySearch({
+        location: posicion,
+        radius: metros,
+        type:[tipoLugar]
+      }, 
+      function(results, status) {
+        marcadorModulo.marcarLugares(results, status);
+      }
+    );
   }
+
   return {
     inicializar,
     buscarCerca
