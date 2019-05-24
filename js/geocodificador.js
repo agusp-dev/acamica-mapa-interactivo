@@ -1,5 +1,4 @@
 var xhhtp = new XMLHttpRequest();
-var url;
 
 geocodificadorModulo = (function () {
   var geocodificador // Geocodificador que dada una dirección devuelve una coordenada
@@ -15,20 +14,12 @@ geocodificadorModulo = (function () {
      console.log("Direccion: " + direccion);
 
      geocodificador.geocode({'address': direccion}, function(results, status) {
-       console.log('status: ' + status);
-       console.log('results: ' + results[0].geometry.location);
-       console.log('location: ' + results[0].geometry.location[0]);
-
       if (status === 'OK') {
-        funcionALlamar(direccion, getLatLng(results[0].geometry.location));
+        funcionALlamar(direccion, results[0].geometry.location);
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
-  }
-
-  function getLatLng(location) {
-    return new google.maps.LatLng({});
   }
 
     // Inicializo el geocoder que obtiene las corrdenadas a partir de una dirección
@@ -54,16 +45,3 @@ geocodificadorModulo = (function () {
     inicializar
   }
 })()
-
-var getUrl = function() {
-  return 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway+Mountain+View';
-}
-
-var apiConnect = function(xhhtp, url) {
-  xhhtp.open('GET', url, true);
-  xhhtp.send();
-}
-
-xhhtp.onreadystatechange = function() {
-  console.log(this.readyState + " - " + this.status);
-}
