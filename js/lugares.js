@@ -15,18 +15,19 @@ lugaresModulo = (function () {
     servicioAutocompletar = new google.maps.places.Autocomplete(direccion);
   }
 
-  ACA QUEDEEEEEE
-
-  function actualizarCirculoBusqueda(position) {
+  function actualizarCirculoBusqueda(posicion) {
     if (circuloBusqueda == undefined) {
       circuloBusqueda = new google.maps.Circle({
         center: posicion,
-        radius: 5000
+        radius: 20000
       });
     } else {
-      circuloBusqueda.setCenter(position);
+      circuloBusqueda.setCenter(posicion);
     }
-    autocompletar.setBounds(circle.getBounds());
+
+    console.log(circuloBusqueda.getBounds());
+    servicioAutocompletar.setBounds(circuloBusqueda.getBounds());
+    servicioAutocompletar.setOptions({strictBounds: true});
   }
 
     // Inicializo la variable servicioLugares y llamo a la función autocompletar
@@ -55,6 +56,7 @@ lugaresModulo = (function () {
 
   return {
     inicializar,
-    buscarCerca
+    buscarCerca,
+    actualizarCirculoBusqueda
   }
 })()

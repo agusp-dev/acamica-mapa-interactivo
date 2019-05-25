@@ -48,6 +48,7 @@ direccionesModulo = (function () {
     mapa.setCenter(ubicacion)
     streetViewModulo.fijarStreetView(ubicacion)
     marcadorModulo.mostrarMiMarcador(ubicacion, direccion)
+    lugaresModulo.actualizarCirculoBusqueda(ubicacion);
   }
 
   function agregarDireccion (direccion, ubicacion) {
