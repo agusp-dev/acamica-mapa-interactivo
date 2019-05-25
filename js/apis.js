@@ -16,8 +16,6 @@ function inicializarMapa () {
     }  
   );
 
-
-
   geocodificadorModulo.inicializar()
   marcadorModulo.inicializar()
   direccionesModulo.inicializar()
