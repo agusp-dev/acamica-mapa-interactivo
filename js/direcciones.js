@@ -46,6 +46,7 @@ direccionesModulo = (function () {
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
     agregarDireccionEnLista(direccion, ubicacionTexto)
     mapa.setCenter(ubicacion)
+    mapa.setZoom(15);
     streetViewModulo.fijarStreetView(ubicacion)
     marcadorModulo.mostrarMiMarcador(ubicacion, direccion)
     lugaresModulo.actualizarCirculoBusqueda(ubicacion);
@@ -89,7 +90,7 @@ direccionesModulo = (function () {
       draggable: true,
       map: mapa,
       panel: document.getElementById('directions-panel-summary'),
-      suppressMarkers: true
+      suppressMarkers: false
     })
   }
 
@@ -97,9 +98,9 @@ direccionesModulo = (function () {
     // dependiendo de la formaDeIr que puede ser Caminando, Auto o Bus/Subterraneo/Tren
   function calcularYMostrarRutas () {
 
-        /* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
-         usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
-         y luego muestra la ruta. */
+    /* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
+      usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
+      y luego muestra la ruta. */
 
     //Origen
     var origen = document.getElementById('desde').value;
