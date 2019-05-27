@@ -45,8 +45,8 @@ direccionesModulo = (function () {
     that = this
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
     agregarDireccionEnLista(direccion, ubicacionTexto)
-    mapa.setCenter(ubicacion)
-    mapa.setZoom(15);
+    actualizarCentro(ubicacion);
+    actualizarZoom(15);
     streetViewModulo.fijarStreetView(ubicacion)
     marcadorModulo.mostrarMiMarcador(ubicacion, direccion)
     lugaresModulo.actualizarCirculoBusqueda(ubicacion);
@@ -104,12 +104,33 @@ direccionesModulo = (function () {
 
     //Origen
     var origen = document.getElementById('desde').value;
+    if (!origen) {
+      return;
+    }
     //Destino
     var destino = document.getElementById('hasta').value;
+    if (!destino) {
+      return;
+    }
     //Tipo de movilidad
     var formaDeIr = obtenerFormaDeIrIndex(document.getElementById('comoIr').selectedIndex);
+    //Puntos intermedios
+    var puntosIntermedios = obtenerPuntosIntermedios(document.getElementById('puntosIntermedios').options);
 
-    calcularRuta(origen, destino, formaDeIr);
+    calcularRuta(origen, destino, formaDeIr, puntosIntermedios);
+  }
+
+  function obtenerPuntosIntermedios(ops) {
+    var directionWaypoints = [];
+    for (var i = 0; i < ops.length; i++) {
+      if (ops[i].selected) {
+        directionWaypoints.push({
+          location: ops[i].text,
+          stopover: true
+        });
+      }
+    }
+    return directionWaypoints;
   }
 
   function obtenerFormaDeIrIndex(position) {
@@ -123,11 +144,13 @@ direccionesModulo = (function () {
   /**
    * Calcula ruta y la dibuja, pasando origen, destino, y tipo de movilidad
    */
-  function calcularRuta(origen, destino, movilidad) {
+  function calcularRuta(origen, destino, movilidad, intermedios) {
+    console.log('a');
     servicioDirecciones.route({
       origin: origen,
       destination: destino,
-      travelMode: movilidad
+      travelMode: movilidad,
+      waypoints: intermedios
     }, 
     function(result, status) {
       console.log(status);

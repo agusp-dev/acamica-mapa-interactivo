@@ -203,7 +203,6 @@ marcadorModulo = (function () {
         animation: google.maps.Animation.DROP,
         draggable: false,
         zIndex: zIndice
-
       })
       limites.extend(ubicacion)
       google.maps.event.addListener(marcador, 'click', function () {

@@ -11,7 +11,7 @@ function inicializarMapa () {
 
   mapa = new google.maps.Map(
     document.getElementById('map'), {
-      zoom: 4,
+      zoom: 6,
       center: posicionCentral
     }  
   );
@@ -21,4 +21,12 @@ function inicializarMapa () {
   direccionesModulo.inicializar()
   lugaresModulo.inicializar()
   streetViewModulo.inicializar()
+}
+
+function actualizarCentro(centro) {
+  mapa.setCenter(centro);
+}
+
+function actualizarZoom(zoom) {
+  mapa.setZoom(zoom);
 }
