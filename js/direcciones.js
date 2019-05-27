@@ -51,7 +51,9 @@ direccionesModulo = (function () {
     lugaresModulo.actualizarCirculoBusqueda(ubicacion);
     streetViewModulo.fijarStreetView(ubicacion);
   }
-
+/* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
+         usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
+         y luego muestra la ruta. */
   function agregarDireccion (direccion, ubicacion) {
     that = this
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
@@ -98,6 +100,43 @@ direccionesModulo = (function () {
         /* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
          usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
          y luego muestra la ruta. */
+
+    //Origen
+    var origen = document.getElementById('desde').value;
+    //Destino
+    var destino = document.getElementById('hasta').value;
+    //Tipo de movilidad
+    var formaDeIr = obtenerFormaDeIrIndex(document.getElementById('comoIr').selectedIndex);
+
+    calcularRuta(origen, destino, formaDeIr);
+  }
+
+  function obtenerFormaDeIrIndex(position) {
+    switch (position) {
+      case 0: return 'DRIVING';
+      case 1: return 'WALKING';
+      default: return 'TRANSIT';
+    }
+  }
+
+  /**
+   * Calcula ruta y la dibuja, pasando origen, destino, y tipo de movilidad
+   */
+  function calcularRuta(origen, destino, movilidad) {
+    servicioDirecciones.route({
+      origin: origen,
+      destination: destino,
+      travelMode: movilidad
+    }, 
+    function(result, status) {
+      console.log(status);
+      if (status == 'OK') {
+        console.log(result);
+        mostradorDirecciones.setDirections(result);
+      } else {
+        alert('Directions was not successful for the following reason: ' + status);
+      }
+    });
   }
 
   return {
