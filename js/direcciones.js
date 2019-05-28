@@ -59,7 +59,7 @@ direccionesModulo = (function () {
     that = this
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
     agregarDireccionEnLista(direccion, ubicacionTexto)
-    mapa.setCenter(ubicacion)
+    actualizarCentro(ubicacion)
   }
 
     // Inicializo las variables que muestra el panel y el que calcula las rutas//
@@ -145,7 +145,6 @@ direccionesModulo = (function () {
    * Calcula ruta y la dibuja, pasando origen, destino, y tipo de movilidad
    */
   function calcularRuta(origen, destino, movilidad, intermedios) {
-    console.log('a');
     servicioDirecciones.route({
       origin: origen,
       destination: destino,
@@ -153,9 +152,7 @@ direccionesModulo = (function () {
       waypoints: intermedios
     }, 
     function(result, status) {
-      console.log(status);
       if (status == 'OK') {
-        console.log(result);
         mostradorDirecciones.setDirections(result);
       } else {
         alert('Directions was not successful for the following reason: ' + status);

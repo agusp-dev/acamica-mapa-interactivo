@@ -157,7 +157,7 @@ marcadorModulo = (function () {
     } else {
       limites.extend(lugar.geometry.location)
     }
-    mapa.fitBounds(limites)
+    actualizarLimites(limites)
   }
 
     // Creo un objeto InfoWindow que será la ventana donde se mostrará la información
@@ -212,7 +212,7 @@ marcadorModulo = (function () {
       marcadoresRuta.push(marcador)
     }
     geocodificadorModulo.usaDireccion(direccion, agregarMarcadorConStreetView)
-    mapa.fitBounds(limites)
+    actualizarLimites(limites)
   }
 
     // Marca los lugares que están en el arreglo resultados y
@@ -231,7 +231,6 @@ marcadorModulo = (function () {
     // Marco los lugares cerca de mi posición
   function marcar () {
     borrarMarcadores(marcadores)
-    console.log('lugar: ' + document.getElementById('tipoDeLugar').value)
     if (marcadorModulo.existeMiMarcador()) {
       var miPosicion = marcadorModulo.damePosicion()
     } else {
@@ -239,7 +238,7 @@ marcadorModulo = (function () {
     }
     lugaresModulo.buscarCerca(miPosicion, tipoDeLugar.value, rango.value)
     // cambio el centro del mapa a miPosicion
-    mapa.panTo(miPosicion)
+    actualizarCentro(miPosicion);
   }
 
   return {

@@ -24,9 +24,13 @@ function inicializarMapa () {
 }
 
 function actualizarCentro(centro) {
-  mapa.setCenter(centro);
+  mapa.panTo(centro);
 }
 
 function actualizarZoom(zoom) {
   mapa.setZoom(zoom);
+}
+
+function actualizarLimites(limites) {
+  mapa.fitBounds(limites);
 }

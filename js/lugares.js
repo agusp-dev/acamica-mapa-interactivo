@@ -25,7 +25,6 @@ lugaresModulo = (function () {
       circuloBusqueda.setCenter(posicion);
     }
 
-    console.log(circuloBusqueda.getBounds());
     servicioAutocompletar.setBounds(circuloBusqueda.getBounds());
     servicioAutocompletar.setOptions({strictBounds: true});
   }
